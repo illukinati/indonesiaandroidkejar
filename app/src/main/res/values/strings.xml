@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">IAK</string>
+
+    <!--Font Awesome-->
+    <string name="fa_trash">&#xf1f8;</string>
+    <string name="fa_next">&#xf105;</string>
+    <string name="fa_left">&#xf104;</string>
+    <string name="fa_chart">&#xf07a;</string>
+    <string name="fa_time">&#xf017;</string>
+    <string name="fa_home">&#xf015;</string>
+    <string name="fa_pick">&#xf291;</string>
+    <string name="fa_wallet">&#xf283;</string>
+    <string name="fa_email">&#xf003;</string>
+    <string name="fa_password">&#xf023;</string>
+    <string name="fa_user">&#xf2c0;</string>
+    <string name="fa_user_2">&#xf007;</string>
+    <string name="fa_close">&#xf00d;</string>
+    <string name="fa_cek">&#xf00c;</string>
+    <string name="fa_phone">&#xf095;</string>
+    <string name="fa_setting">&#xf013;</string>
+    <string name="fa_history">&#xf1da;</string>
+    <string name="fa_list">&#xf03a;</string>
+    <string name="fa_off">&#xf011;</string>
+    <!--Checkout-->
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string-array name="level">
+        <item>Beginner</item>
+        <item>Intermediate</item>
+        <item>Advance</item>
+    </string-array>
+
+</resources>

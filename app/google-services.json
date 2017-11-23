@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "673329999322",
+    "firebase_url": "https://indonesiaandroidkejar-ac8e8.firebaseio.com",
+    "project_id": "indonesiaandroidkejar-ac8e8",
+    "storage_bucket": "indonesiaandroidkejar-ac8e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673329999322:android:57b91c76242cb7cb",
+        "android_client_info": {
+          "package_name": "id.ignitech.iak"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673329999322-igamiejrrv3lu3a8v5gidd0g4ik2b3qe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.ignitech.iak",
+            "certificate_hash": "6510aadabc9ef3eb17c622e4a27e2702c69fe70b"
+          }
+        },
+        {
+          "client_id": "673329999322-s8259v5bem9ho7fhc9f3r155ma86jp8m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8tGO51M0TLKZApl-NJbFG6wtnEJhnv0M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "673329999322-s8259v5bem9ho7fhc9f3r155ma86jp8m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
