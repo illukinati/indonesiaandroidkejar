@@ -27,6 +27,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import id.ignitech.iak.Item.Configuration;
+import id.ignitech.iak.Item.Message;
 import id.ignitech.iak.Model.ModelFasilitator;
 import id.ignitech.iak.R;
 
@@ -59,7 +61,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
-        mDatabase = FirebaseDatabase.getInstance().getReference("fasilitator");
+        mDatabase = FirebaseDatabase.getInstance().getReference(Configuration.Database.DATABASE_NAME);
 
         edtNama     = (EditText) findViewById(R.id.edt_nama);
         edtAlamat   = (EditText) findViewById(R.id.edt_alamat);
@@ -101,7 +103,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void updateLabel(TextView edtDate) {
-        String myFormat = "dd MMMM yyyy"; //In which you need put here
+        String myFormat = Configuration.DatePicker.DATE_FORMAT; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         edtDate.setText(sdf.format(myCalendar.getTime()));
@@ -176,7 +178,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         mDatabase.child(mAuth.getCurrentUser().getUid()).child("tanggal1").setValue(txtTanggal.getText().toString());
         mDatabase.child(mAuth.getCurrentUser().getUid()).child("tanggal2").setValue(txtTanggal2.getText().toString());
 
-        Toast.makeText(this, "Data sudah terupdate", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, Message.Profile.UPDATED, Toast.LENGTH_SHORT).show();
     }
 
     @Override

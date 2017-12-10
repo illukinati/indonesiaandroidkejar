@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -24,13 +22,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import id.ignitech.iak.Adapter.FasilitatorAdapter;
-import id.ignitech.iak.MainActivity;
+import id.ignitech.iak.Item.ClassLevel;
+import id.ignitech.iak.Item.Configuration;
+import id.ignitech.iak.Item.Message;
+import id.ignitech.iak.Item.Week;
 import id.ignitech.iak.Model.ModelFasilitator;
 import id.ignitech.iak.R;
 
@@ -43,8 +42,8 @@ public class FasilActivity extends AppCompatActivity implements View.OnClickList
 
     TextView txtMinggu, txtKelas, txtProfile;
 
-    CharSequence kelas[] = new CharSequence[] {"Beginner", "Intermediate", "Advance"};
-    CharSequence minggu[] = new CharSequence[] {"Minggu ke-1", "Minggu ke-2", "Minggu ke-3", "Minggu ke-4"};
+    CharSequence kelas[] = new CharSequence[] {ClassLevel.BEGINNER, ClassLevel.INTERMEDIATE, ClassLevel.ADVANCE};
+    CharSequence minggu[] = new CharSequence[] {Week.FIRST_WEEK, Week.SECOND_WEEK, Week.THIRD_WEEK, Week.FORTH_WEEK};
     AlertDialog.Builder builderMinggu, builderKelas;
 
     ArrayList<ModelFasilitator> list;
@@ -67,7 +66,7 @@ public class FasilActivity extends AppCompatActivity implements View.OnClickList
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
-        mDatabase = FirebaseDatabase.getInstance().getReference("fasilitator");
+        mDatabase = FirebaseDatabase.getInstance().getReference(Configuration.Database.DATABASE_NAME);
 
         getDataUser();
         getDataFirebase();
@@ -85,22 +84,22 @@ public class FasilActivity extends AppCompatActivity implements View.OnClickList
             public void onClick(DialogInterface dialog, int which) {
                 switch(which){
                     case 0:
-                        txtMinggu.setText("Minggu ke-1");
+                        txtMinggu.setText(Week.FIRST_WEEK);
                         mng = 1;
                         getDataFirebase();
                         break;
                     case 1:
-                        txtMinggu.setText("Minggu ke-2");
+                        txtMinggu.setText(Week.SECOND_WEEK);
                         mng = 2;
                         getDataFirebase();
                         break;
                     case 2:
-                        txtMinggu.setText("Minggu ke-3");
+                        txtMinggu.setText(Week.THIRD_WEEK);
                         mng = 3;
                         getDataFirebase();
                         break;
                     case 3:
-                        txtMinggu.setText("Minggu ke-4");
+                        txtMinggu.setText(Week.FORTH_WEEK);
                         mng = 4;
                         getDataFirebase();
                         break;
@@ -115,18 +114,18 @@ public class FasilActivity extends AppCompatActivity implements View.OnClickList
             public void onClick(DialogInterface dialog, int which) {
                 switch(which){
                     case 0:
-                        txtKelas.setText("Beginner");
-                        kls = "Beginner";
+                        txtKelas.setText(ClassLevel.BEGINNER);
+                        kls = ClassLevel.BEGINNER;
                         getDataFirebase();
                         break;
                     case 1:
-                        txtKelas.setText("Intermediate");
-                        kls = "Intermediate";
+                        txtKelas.setText(ClassLevel.INTERMEDIATE);
+                        kls = ClassLevel.INTERMEDIATE;
                         getDataFirebase();
                         break;
                     case 2:
-                        txtKelas.setText("Advance");
-                        kls = "Advance";
+                        txtKelas.setText(ClassLevel.ADVANCE);
+                        kls = ClassLevel.ADVANCE;
                         getDataFirebase();
                         break;
                 }
@@ -166,18 +165,18 @@ public class FasilActivity extends AppCompatActivity implements View.OnClickList
                         if(value.getTanggal1().equalsIgnoreCase("11 November 2017") ||
                                 value.getTanggal2().equalsIgnoreCase("11 November 2017")){
                             switch (kls){
-                                case "Beginner":
-                                    if(value.getLevel().equalsIgnoreCase("Beginner"))
+                                case ClassLevel.BEGINNER:
+                                    if(value.getLevel().equalsIgnoreCase(ClassLevel.BEGINNER))
                                     list.add(new ModelFasilitator(value.getNama(), value.getTanggal1(),
                                             value.getTanggal2(), value.getAlamat(), value.getQuota(), value.getLevel()));
                                     break;
-                                case "Intermediate":
-                                    if(value.getLevel().equalsIgnoreCase("Intermediate"))
+                                case ClassLevel.INTERMEDIATE:
+                                    if(value.getLevel().equalsIgnoreCase(ClassLevel.INTERMEDIATE))
                                     list.add(new ModelFasilitator(value.getNama(), value.getTanggal1(),
                                             value.getTanggal2(), value.getAlamat(), value.getQuota(), value.getLevel()));
                                     break;
-                                case "Advance":
-                                    if(value.getLevel().equalsIgnoreCase("Advance"))
+                                case ClassLevel.ADVANCE:
+                                    if(value.getLevel().equalsIgnoreCase(ClassLevel.ADVANCE))
                                     list.add(new ModelFasilitator(value.getNama(), value.getTanggal1(),
                                             value.getTanggal2(), value.getAlamat(), value.getQuota(), value.getLevel()));
                                     break;
@@ -192,18 +191,18 @@ public class FasilActivity extends AppCompatActivity implements View.OnClickList
                         if(value.getTanggal1().equalsIgnoreCase("18 November 2017") ||
                                 value.getTanggal2().equalsIgnoreCase("18 November 2017")){
                             switch (kls){
-                                case "Beginner":
-                                    if(value.getLevel().equalsIgnoreCase("Beginner"))
+                                case ClassLevel.BEGINNER:
+                                    if(value.getLevel().equalsIgnoreCase(ClassLevel.BEGINNER))
                                         list.add(new ModelFasilitator(value.getNama(), value.getTanggal1(),
                                                 value.getTanggal2(), value.getAlamat(), value.getQuota(), value.getLevel()));
                                     break;
-                                case "Intermediate":
-                                    if(value.getLevel().equalsIgnoreCase("Intermediate"))
+                                case ClassLevel.INTERMEDIATE:
+                                    if(value.getLevel().equalsIgnoreCase(ClassLevel.INTERMEDIATE))
                                         list.add(new ModelFasilitator(value.getNama(), value.getTanggal1(),
                                                 value.getTanggal2(), value.getAlamat(), value.getQuota(), value.getLevel()));
                                     break;
-                                case "Advance":
-                                    if(value.getLevel().equalsIgnoreCase("Advance"))
+                                case ClassLevel.ADVANCE:
+                                    if(value.getLevel().equalsIgnoreCase(ClassLevel.ADVANCE))
                                         list.add(new ModelFasilitator(value.getNama(), value.getTanggal1(),
                                                 value.getTanggal2(), value.getAlamat(), value.getQuota(), value.getLevel()));
                                     break;
@@ -218,18 +217,18 @@ public class FasilActivity extends AppCompatActivity implements View.OnClickList
                         if(value.getTanggal1().equalsIgnoreCase("25 November 2017") ||
                                 value.getTanggal2().equalsIgnoreCase("25 November 2017")){
                             switch (kls){
-                                case "Beginner":
-                                    if(value.getLevel().equalsIgnoreCase("Beginner"))
+                                case ClassLevel.BEGINNER:
+                                    if(value.getLevel().equalsIgnoreCase(ClassLevel.BEGINNER))
                                         list.add(new ModelFasilitator(value.getNama(), value.getTanggal1(),
                                                 value.getTanggal2(), value.getAlamat(), value.getQuota(), value.getLevel()));
                                     break;
-                                case "Intermediate":
-                                    if(value.getLevel().equalsIgnoreCase("Intermediate"))
+                                case ClassLevel.INTERMEDIATE:
+                                    if(value.getLevel().equalsIgnoreCase(ClassLevel.INTERMEDIATE))
                                         list.add(new ModelFasilitator(value.getNama(), value.getTanggal1(),
                                                 value.getTanggal2(), value.getAlamat(), value.getQuota(), value.getLevel()));
                                     break;
-                                case "Advance":
-                                    if(value.getLevel().equalsIgnoreCase("Advance"))
+                                case ClassLevel.ADVANCE:
+                                    if(value.getLevel().equalsIgnoreCase(ClassLevel.ADVANCE))
                                         list.add(new ModelFasilitator(value.getNama(), value.getTanggal1(),
                                                 value.getTanggal2(), value.getAlamat(), value.getQuota(), value.getLevel()));
                                     break;
@@ -244,18 +243,18 @@ public class FasilActivity extends AppCompatActivity implements View.OnClickList
                         if(value.getTanggal1().equalsIgnoreCase("2 Desember 2017") ||
                                 value.getTanggal2().equalsIgnoreCase("2 Desember 2017")){
                             switch (kls){
-                                case "Beginner":
-                                    if(value.getLevel().equalsIgnoreCase("Beginner"))
+                                case ClassLevel.BEGINNER:
+                                    if(value.getLevel().equalsIgnoreCase(ClassLevel.BEGINNER))
                                         list.add(new ModelFasilitator(value.getNama(), value.getTanggal1(),
                                                 value.getTanggal2(), value.getAlamat(), value.getQuota(), value.getLevel()));
                                     break;
-                                case "Intermediate":
-                                    if(value.getLevel().equalsIgnoreCase("Intermediate"))
+                                case ClassLevel.INTERMEDIATE:
+                                    if(value.getLevel().equalsIgnoreCase(ClassLevel.INTERMEDIATE))
                                         list.add(new ModelFasilitator(value.getNama(), value.getTanggal1(),
                                                 value.getTanggal2(), value.getAlamat(), value.getQuota(), value.getLevel()));
                                     break;
-                                case "Advance":
-                                    if(value.getLevel().equalsIgnoreCase("Advance"))
+                                case ClassLevel.ADVANCE:
+                                    if(value.getLevel().equalsIgnoreCase(ClassLevel.ADVANCE))
                                         list.add(new ModelFasilitator(value.getNama(), value.getTanggal1(),
                                                 value.getTanggal2(), value.getAlamat(), value.getQuota(), value.getLevel()));
                                     break;
@@ -268,18 +267,18 @@ public class FasilActivity extends AppCompatActivity implements View.OnClickList
                     } else {
                         ModelFasilitator value = dataSnapshot1.getValue(ModelFasilitator.class);
                         switch (kls) {
-                            case "Beginner":
-                                if (value.getLevel().equalsIgnoreCase("Beginner"))
+                            case ClassLevel.BEGINNER:
+                                if (value.getLevel().equalsIgnoreCase(ClassLevel.BEGINNER))
                                     list.add(new ModelFasilitator(value.getNama(), value.getTanggal1(),
                                             value.getTanggal2(), value.getAlamat(), value.getQuota(), value.getLevel()));
                                 break;
-                            case "Intermediate":
-                                if (value.getLevel().equalsIgnoreCase("Intermediate"))
+                            case ClassLevel.INTERMEDIATE:
+                                if (value.getLevel().equalsIgnoreCase(ClassLevel.INTERMEDIATE))
                                     list.add(new ModelFasilitator(value.getNama(), value.getTanggal1(),
                                             value.getTanggal2(), value.getAlamat(), value.getQuota(), value.getLevel()));
                                 break;
-                            case "Advance":
-                                if (value.getLevel().equalsIgnoreCase("Advance"))
+                            case ClassLevel.ADVANCE:
+                                if (value.getLevel().equalsIgnoreCase(ClassLevel.ADVANCE))
                                     list.add(new ModelFasilitator(value.getNama(), value.getTanggal1(),
                                             value.getTanggal2(), value.getAlamat(), value.getQuota(), value.getLevel()));
                                 break;
@@ -301,7 +300,7 @@ public class FasilActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                Log.w("Hello", "Failed to read value.", error.toException());
+                Log.w(this.getClass().getName().toLowerCase(), Message.Fasilitator.READ_VALUE_FAILED, error.toException());
             }
         });
     }

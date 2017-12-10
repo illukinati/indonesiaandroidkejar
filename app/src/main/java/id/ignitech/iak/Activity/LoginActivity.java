@@ -17,6 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import id.ignitech.iak.Item.Message;
 import id.ignitech.iak.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -59,7 +60,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             } else {
                                 pgBar.setVisibility(View.GONE);
                                 btnMasuk.setVisibility(View.VISIBLE);
-                                Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                Toast.makeText(LoginActivity.this, Message.Authentication.FAILURE,
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
