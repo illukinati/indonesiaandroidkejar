@@ -133,17 +133,24 @@ public class FasilActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
-    public void getDataUser (){
+    public void getDataUser() {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String uid = mAuth.getCurrentUser().getUid();
-                for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
-                    if(uid.equals(dataSnapshot1.getKey())){
-                        txtProfile.setText(dataSnapshot1.getValue(ModelFasilitator.class).getNama());
+                try {
+                    if (mAuth.getCurrentUser().getUid() != null) {
+                        String uid = mAuth.getCurrentUser().getUid();
+                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                            if (uid.equals(dataSnapshot1.getKey())) {
+                                txtProfile.setText(dataSnapshot1.getValue(ModelFasilitator.class).getNama());
+                            }
+                        }
                     }
+                } catch (Exception e){
+
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -151,7 +158,6 @@ public class FasilActivity extends AppCompatActivity implements View.OnClickList
 
         });
     }
-
     public void getDataFirebase(){
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override

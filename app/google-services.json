@@ -15,22 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "673329999322-c1c3c8vtftp3l8v78idmbatii72bgcs6.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "id.ignitech.iak",
-            "certificate_hash": "4d1d37ec38766341a5d447878aa2198b18747e85"
-          }
-        },
-        {
-          "client_id": "673329999322-s851uoh77qesn0r0k43um16ut7q524ea.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "id.ignitech.iak",
-            "certificate_hash": "47480452b4de5d85000c7bd3f78e2f3b7b9ae392"
-          }
-        },
-        {
           "client_id": "673329999322-igamiejrrv3lu3a8v5gidd0g4ik2b3qe.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
