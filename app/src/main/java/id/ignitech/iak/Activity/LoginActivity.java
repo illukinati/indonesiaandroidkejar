@@ -23,7 +23,7 @@ import id.ignitech.iak.R;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText edtEmail, edtPassword;
-    Button btnMasuk;
+    Button btnMasuk, btnPeserta;
     ProgressBar pgBar;
     private FirebaseAuth mAuth;
 
@@ -35,11 +35,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         edtEmail = (EditText) findViewById(R.id.edt_email);
         edtPassword = (EditText) findViewById(R.id.edt_password);
         btnMasuk = (Button) findViewById(R.id.btn_masuk);
+        btnPeserta = (Button) findViewById(R.id.btn_masuk_peserta);
         pgBar = (ProgressBar) findViewById(R.id.pg_loading);
         pgBar.setVisibility(View.GONE);
 
         btnMasuk.setOnClickListener(this);
-
+        btnPeserta.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
     }
@@ -50,6 +51,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             pgBar.setVisibility(View.VISIBLE);
             btnMasuk.setVisibility(View.GONE);
             mAuth.signInWithEmailAndPassword(edtEmail.getText().toString(), edtPassword.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Intent intent = new Intent(LoginActivity.this, FasilActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                pgBar.setVisibility(View.GONE);
+                                btnMasuk.setVisibility(View.VISIBLE);
+                                Toast.makeText(LoginActivity.this, Message.Authentication.FAILURE,
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        } else if (view == btnPeserta){
+            pgBar.setVisibility(View.VISIBLE);
+            btnPeserta.setVisibility(View.GONE);
+            mAuth.signInWithEmailAndPassword("maulanaakbar771@gmail.com", "calamity")
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {

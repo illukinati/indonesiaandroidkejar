@@ -312,25 +312,48 @@ public class FasilActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void showPopup(View v) {
-        PopupMenu popup = new PopupMenu(this, v);
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.more_menu, popup.getMenu());
-        popup.show();
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if(item.getItemId() == R.id.menu_logout){
-                    mAuth.signOut();
-                    Intent intent = new Intent(FasilActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else if (item.getItemId() == R.id.menu_profile){
-                    Intent intent = new Intent(FasilActivity.this, ProfileActivity.class);
-                    startActivity(intent);
-                }
-                return true;
+        try {
+            if (mAuth.getCurrentUser().getEmail().equals("maulanaakbar771@gmail.com")) {
+                PopupMenu popup = new PopupMenu(this, v);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.more_menu_peserta, popup.getMenu());
+                popup.show();
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.menu_logout) {
+                            mAuth.signOut();
+                            Intent intent = new Intent(FasilActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        return true;
+                    }
+                });
+            } else {
+                PopupMenu popup = new PopupMenu(this, v);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.more_menu, popup.getMenu());
+                popup.show();
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.menu_logout) {
+                            mAuth.signOut();
+                            Intent intent = new Intent(FasilActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else if (item.getItemId() == R.id.menu_profile) {
+                            Intent intent = new Intent(FasilActivity.this, ProfileActivity.class);
+                            startActivity(intent);
+                        }
+                        return true;
+                    }
+                });
             }
-        });
+        } catch (Exception e){
+
+        }
     }
 
     @Override

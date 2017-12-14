@@ -96,6 +96,17 @@
         android:textColor="@drawable/btn_text_color"
         android:background="@drawable/btn_login_selector"/>
 
+    <Button
+        android:id="@+id/btn_masuk_peserta"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="Masuk Sebagai Peserta"
+        android:textColor="@color/colorPrimary"
+        android:background="#FFF"/>
+
     <ProgressBar
         android:id="@+id/pg_loading"
         android:layout_width="wrap_content"
